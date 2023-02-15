@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 2727;
+const port = process.env.PORT || 2727;
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const helmet = require("helmet");
