@@ -2,6 +2,12 @@ const User = require("../models/User");
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
 
+//ONLY FOR TESTS
+router.get("/all", async (req, res) => {
+    const users = await User.find();
+    res.status(200).json(users);
+})
+
 //Update user
 router.put("/:id", async (req, res) => {
     if(req.body.userId === req.params.id) { //Changed one thing here compared to video (ifAdmin)
@@ -86,8 +92,8 @@ router.get("/friends/:id", async (req, res) => {
 
         let friendList = [];
         friends.map(friend => {
-            const {_id, username, profilePicture} = friend;
-            friendList.push({_id, username, profilePicture});
+            const {_id, name, profilePicture} = friend;
+            friendList.push({_id, name, profilePicture});
         })
         res.status(200).json(friendList);
     } catch(err) {
