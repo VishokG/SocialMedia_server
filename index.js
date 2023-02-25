@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 //Route imports
 const userRoute = require("./routes/users");
@@ -19,6 +20,7 @@ mongoose.connect(process.env.MONGO_URL, () => {
 })
 
 //Middleware
+app.use(cors());
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
